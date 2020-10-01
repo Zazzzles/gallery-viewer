@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+
+import { Container } from './index.module.css';
+
+import Sidebar from './components/sidebar';
+
+import api from './api';
 
 function App() {
+  useEffect(() => {
+    (async () => {
+      const query = {
+        page: 1,
+        per_page: 5,
+      };
+      const res = await api.photos.get.all(query);
+      const res2 = await api.photos.get.byCollection('1020971', query);
+      console.log(res);
+      console.log(res2);
+    })();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={Container}>
+      <Sidebar />
+      <h1>Hi</h1>
     </div>
   );
 }

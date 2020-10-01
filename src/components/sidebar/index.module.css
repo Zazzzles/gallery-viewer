@@ -1,0 +1,6 @@
+.Container {
+  height: 100%;
+  width: 360px;
+  background-color: var(--bg2);
+  box-shadow: var(--shadow);
+}
