@@ -26,5 +26,13 @@
 .CardContainer {
   padding: 0 var(--spacing-10);
   display: flex;
-  max-width: 80vw;
+  flex-direction: row;
+  overflow: hidden;
+  width: 80vw;
+}
+
+.CardContainerInner {
+  display: flex;
+  flex-direction: row;
+  transition: all 0.3s;
 }

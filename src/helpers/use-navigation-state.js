@@ -52,12 +52,5 @@ export default (xLimit = 10, yLimit = 10) => {
     });
   }, []);
 
-  //   useEffect(() => {
-  //     console.log(xIndex);
-  //   }, [xIndex]);
-  //   useEffect(() => {
-  //     console.log(yIndex);
-  //   }, [yIndex]);
-
   return { xIndex, yIndex };
 };
