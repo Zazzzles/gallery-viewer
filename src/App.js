@@ -15,8 +15,10 @@ function App() {
       };
       const res = await api.photos.get.all(query);
       const res2 = await api.photos.get.byCollection('1020971', query);
+      const res3 = await api.collections.get.all();
       console.log(res);
       console.log(res2);
+      console.log(res3);
     })();
   }, []);
 
