@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
-import { Container } from './index.module.css';
+import cn from 'classnames';
+
+import { Container, Maximized } from './index.module.css';
+
+import NavigationContext from '../../context/navigation-context';
 
 export default () => {
-  return <div className={Container}></div>;
+  const { xIndex } = useContext(NavigationContext);
+
+  return <div className={cn(Container, { [Maximized]: xIndex > 0 })}></div>;
 };

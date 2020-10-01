@@ -1,8 +1,12 @@
 .Container {
   background-color: lightblue;
-  height: 300px;
-  width: 400px;
+  height: 35vh;
+  width: 24vw;
   border-radius: var(--radii-4);
   box-shadow: var(--shadow-lg);
   margin: var(--spacing-3);
+}
+
+.Maximized {
+  width: 26vw;
 }

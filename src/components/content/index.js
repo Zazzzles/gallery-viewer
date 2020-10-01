@@ -29,10 +29,11 @@ export default () => {
           className={CardContainerInner}
           style={{
             transform: `translate3d(-${
-              xIndex * (windowDimensions.width * 0.8)
+              xIndex * (windowDimensions.width * 0.95)
             }px ,0,0)`,
             minWidth: `${
-              NUMBER_OF_TILE_GROUPS * (windowDimensions.width * 0.8)
+              NUMBER_OF_TILE_GROUPS *
+              (windowDimensions.width * (xIndex > 0 ? 0.95 : 0.8))
             }px`,
           }}
         >

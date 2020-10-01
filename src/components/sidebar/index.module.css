@@ -4,6 +4,11 @@
   background-color: var(--bg2);
   box-shadow: var(--shadow-md);
   overflow: hidden;
+  transition: all 0.3s;
+}
+
+.Minimized {
+  width: 5vw;
 }
 
 .LogoWrapper {
