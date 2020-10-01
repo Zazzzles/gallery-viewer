@@ -1,0 +1,8 @@
+.Container {
+  background-color: lightblue;
+  height: 300px;
+  width: 400px;
+  border-radius: var(--radii-4);
+  box-shadow: var(--shadow-lg);
+  margin: var(--spacing-3);
+}

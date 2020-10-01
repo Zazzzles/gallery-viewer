@@ -1,0 +1,30 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.Topbar {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-8) var(--spacing-10);
+}
+
+.Title {
+  color: white;
+  margin: 0;
+  font-size: 4rem;
+}
+
+.Subtitle {
+  color: white;
+  margin: 0;
+  opacity: 0.5;
+  font-size: var(--font-scale-3);
+}
+
+.CardContainer {
+  padding: 0 var(--spacing-10);
+  display: flex;
+  max-width: 80vw;
+}

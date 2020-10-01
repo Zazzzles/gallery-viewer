@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { Container } from './index.module.css';
 
 import Sidebar from './components/sidebar';
+import Content from './components/content';
 
 import api from './api';
 
@@ -25,7 +26,7 @@ function App() {
   return (
     <div className={Container}>
       <Sidebar />
-      <h1>Hi</h1>
+      <Content />
     </div>
   );
 }

@@ -42,11 +42,53 @@ body {
 :root {
   --bg1: #0f1319;
   --bg2: #161f2a;
-  --primary: #49a2e4;
+  --bg3: #202c3c;
+  --bg3-dark: #181e2;
+
+  --primary: #2a93e2;
   --secondary: #7060d3;
 
-  --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  --radius: 1em;
+  --font-scale-0: 0.75rem;
+  --font-scale-1: 0.875rem;
+  --font-scale-2: 1rem;
+  --font-scale-3: 1.125rem;
+  --font-scale-4: 1.25rem;
+  --font-scale-5: 1.475rem;
+  --font-scale-6: 1.875rem;
+  --font-scale-7: 2rem;
+
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 2rem;
+  --spacing-8: 2.5rem;
+  --spacing-9: 3rem;
+  --spacing-10: 4rem;
+  --spacing-11: 5rem;
+  --spacing-12: 6rem;
+  --spacing-13: 7rem;
+  --spacing-14: 8rem;
+
+  --radii-0: 0;
+  --radii-1: 0.25rem;
+  --radii-2: 0.5rem;
+  --radii-3: 0.75rem;
+  --radii-4: 1rem;
+  --radii-5: 1.25rem;
+  --radii-6: 1.5rem;
+  --radii-7: 2rem;
+  --radii-half: 50%;
+  --radii-full: 100%;
+
+  --shadow-xs: 2px 2px 24px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 2px 6px 12px rgba(6, 27, 43, 0.1);
+  --shadow-md: 0 10px 20px rgba(6, 27, 43, 0.17);
+  --shadow-lg: 0 6px 24px rgba(0, 0, 0, 0.22);
+  --shadow-xl: 3px 3px 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 button,
