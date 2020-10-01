@@ -5,9 +5,15 @@ import { Container } from './index.module.css';
 import Sidebar from './components/sidebar';
 import Content from './components/content';
 
+import useNavigationState from './helpers/use-navigation-state';
+
+import NavigationContext from './context/navigation-context';
+
 import api from './api';
 
 function App() {
+  const { xIndex, yIndex } = useNavigationState(10, 3);
+
   useEffect(() => {
     (async () => {
       const query = {
@@ -25,8 +31,10 @@ function App() {
 
   return (
     <div className={Container}>
-      <Sidebar />
-      <Content />
+      <NavigationContext.Provider value={{ xIndex, yIndex }}>
+        <Sidebar />
+        <Content />
+      </NavigationContext.Provider>
     </div>
   );
 }
