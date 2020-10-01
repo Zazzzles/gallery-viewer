@@ -23,11 +23,17 @@ function App() {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
+  const [collections, setCollections] = useState([]);
 
-  const { xIndex, yIndex } = useNavigationState(2, 3);
+  const { xIndex, yIndex } = useNavigationState(2, collections.length - 1);
 
   useEffect(() => {
     setWindowDimensions(getWindowDimensions());
+    (async () => {
+      const res = await api.collections.get.all();
+      setCollections(res.data);
+    })();
+
     // (async () => {
     //   const query = {
     //     page: 1,
@@ -45,7 +51,7 @@ function App() {
   return (
     <div className={Container}>
       <NavigationContext.Provider value={{ xIndex, yIndex, windowDimensions }}>
-        <Sidebar />
+        <Sidebar collections={collections} />
         <Content />
       </NavigationContext.Provider>
     </div>

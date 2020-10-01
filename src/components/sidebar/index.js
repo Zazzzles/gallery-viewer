@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import cn from 'classnames';
 
@@ -17,9 +17,7 @@ import MenuItem from '../menu-item';
 import MicroMenuItem from '../micro-menu-item';
 import NavigationContext from '../../context/navigation-context';
 
-const items = ['item1', 'item2', 'item3', 'item4'];
-
-export default () => {
+export default ({ collections }) => {
   const { xIndex, yIndex } = useContext(NavigationContext);
 
   return (
@@ -42,11 +40,15 @@ export default () => {
               : {}
           }
         >
-          {items.map((item, index) => {
+          {collections.map((collection, index) => {
             return xIndex > 0 ? (
-              <MicroMenuItem active={yIndex === index} key={index} />
+              <MicroMenuItem
+                {...collection}
+                active={yIndex === index}
+                key={index}
+              />
             ) : (
-              <MenuItem active={yIndex === index} key={index} />
+              <MenuItem {...collection} active={yIndex === index} key={index} />
             );
           })}
         </div>

@@ -12,30 +12,27 @@ import {
   Active,
 } from './index.module.css';
 
-const ThumbNail = () => {
+const ThumbNail = ({ src }) => {
   return (
     <div className={ThumbImageContainer}>
-      <img
-        src={
-          'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg'
-        }
-        className={ThumbImage}
-        alt='Thumb image'
-      />
+      <img src={src} className={ThumbImage} alt='Thumb image' />
     </div>
   );
 };
 
-export default ({ active }) => {
+export default ({ active, ...collectionProps }) => {
   return (
     <div className={cn(Container, { [Active]: active })}>
-      <span className={Title}>Some category</span>
+      <span className={Title}>{collectionProps.title}</span>
       <div className={ThumbContainer}>
-        <ThumbNail />
-        <ThumbNail />
-        <ThumbNail />
-        <ThumbNail />
-        <span className={ThumbText}>+ 5 more</span>
+        {collectionProps.preview_photos.map((photo) => {
+          return <ThumbNail src={photo.urls.thumb} />;
+        })}
+        <span className={ThumbText}>
+          +{' '}
+          {collectionProps.total_photos - collectionProps.preview_photos.length}{' '}
+          more
+        </span>
       </div>
     </div>
   );

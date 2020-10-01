@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const KEY_CODES = {
   up: 'ArrowUp',
@@ -11,8 +11,8 @@ export default (xLimit = 10, yLimit = 10) => {
   const [xIndex, setXIndex] = useState(0);
   const [yIndex, setYIndex] = useState(0);
 
-  useEffect(() => {
-    document.addEventListener('keydown', function (event) {
+  const handleEvent = useCallback(
+    (event) => {
       if (event.key === KEY_CODES.down) {
         console.log('Up');
         setYIndex((yIndex) => {
@@ -49,8 +49,14 @@ export default (xLimit = 10, yLimit = 10) => {
           return xIndex;
         });
       }
-    });
-  }, []);
+    },
+    [xLimit, yLimit]
+  );
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEvent);
+    return () => document.removeEventListener('keydown', handleEvent);
+  }, [handleEvent]);
 
   return { xIndex, yIndex };
 };
