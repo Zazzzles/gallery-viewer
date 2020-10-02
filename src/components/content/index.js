@@ -63,48 +63,6 @@ export default ({ activeCollection }) => {
               </div>
             );
           })}
-
-          {/* 
-           <div
-            className={CardWrapper}
-            style={{
-              width: contextualCardContentWidth,
-            }}
-          >
-            <PictureTile />
-            <PictureTile />
-            <PictureTile />
-            <PictureTile />
-            <PictureTile />
-            <PictureTile />
-          </div>
-          <div
-            className={CardWrapper}
-            style={{
-              width: contextualCardContentWidth,
-            }}
-          >
-            <PictureTile />
-            <PictureTile />
-            <PictureTile />
-            <PictureTile />
-            <PictureTile />
-            <PictureTile />
-          </div>
-          <div
-            className={CardWrapper}
-            style={{
-              width: contextualCardContentWidth,
-            }}
-          >
-            <PictureTile />
-            <PictureTile />
-            <PictureTile />
-            <PictureTile />
-            <PictureTile />
-            <PictureTile />
-          </div>
-          */}
         </div>
       </div>
     </div>

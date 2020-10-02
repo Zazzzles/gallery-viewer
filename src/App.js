@@ -12,7 +12,7 @@ import NavigationContext from './context/navigation-context';
 import api from './api';
 
 //  Implementing chunking of requests to avoid hitting free tier request limit
-
+//  TODO: Externalize image fetching hooks
 const COLLECTION_FETCH_CHUNK_SIZE = 3;
 
 function getWindowDimensions() {
@@ -43,6 +43,7 @@ function App() {
 
   const fetchMoreCollectons = (collections) => {
     //  Get next chunk of collections to fetch
+
     let collectionsToFetch = collections.filter((_, index) => {
       return (
         index < collectionOffset + COLLECTION_FETCH_CHUNK_SIZE &&
@@ -51,6 +52,7 @@ function App() {
     });
 
     //  Create requests for each collection
+
     let nextChunk = collectionsToFetch.map(({ id }) => {
       return api.photos.get.byCollection(id).then((res) => ({
         id,
@@ -59,6 +61,7 @@ function App() {
     });
 
     //  Fire requests and persist
+
     Promise.all(nextChunk).then((results) => {
       results.forEach((res) => {
         setFetchedCollections((prevCollections) => {
@@ -66,19 +69,18 @@ function App() {
         });
       });
       setCollectionOffset((prevOffset) => {
-        console.log(prevOffset);
         return prevOffset + COLLECTION_FETCH_CHUNK_SIZE;
       });
     });
   };
 
   //  On mount fetch all collections
+
   useEffect(() => {
     setWindowDimensions(getWindowDimensions());
     (async () => {
       const res = await api.collections.get.all();
       setCollections(res.data);
-      //  TODO: Get initial collections
       res.data.forEach(async ({ id }, index) => {
         if (index < COLLECTION_FETCH_CHUNK_SIZE) {
           let res = await api.photos.get.byCollection(id);
@@ -94,16 +96,9 @@ function App() {
 
   useEffect(() => {
     if (yIndex === collectionOffset - 1) {
-      // TODO: Check of this works ( Do fetch 1 tile before you actually need to)
       fetchMoreCollectons(collections);
     }
   }, [collections, yIndex]);
-
-  //  Just log everytime fetchedCollections chage
-
-  // useEffect(() => {
-  //   console.log(fetchedCollections);
-  // }, [fetchedCollections]);
 
   //  Get active menu item
 
