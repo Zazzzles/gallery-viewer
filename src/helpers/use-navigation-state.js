@@ -7,9 +7,10 @@ const KEY_CODES = {
   right: 'ArrowRight',
 };
 
-export default (xLimit = 10, yLimit = 10) => {
+export default (xLimitDefault = 10, yLimit = 10) => {
   const [xIndex, setXIndex] = useState(0);
   const [yIndex, setYIndex] = useState(0);
+  const [xLimit, setXLimit] = useState(xLimitDefault);
 
   const handleEvent = useCallback(
     (event) => {
@@ -54,5 +55,5 @@ export default (xLimit = 10, yLimit = 10) => {
     return () => document.removeEventListener('keydown', handleEvent);
   }, [handleEvent]);
 
-  return { xIndex, yIndex };
+  return { xIndex, yIndex, setXLimit, setXIndex };
 };

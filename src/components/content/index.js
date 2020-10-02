@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 import {
   Container,
@@ -10,16 +10,73 @@ import {
   Subtitle,
 } from './index.module.css';
 
+import api from '../../api';
+
 import chunkArray from '../../helpers/chunk-array';
+import mod from '../../helpers/modulus';
 
 import PictureTile from '../picture-tile';
-
 import NavigationContext from '../../context/navigation-context';
-
-const NUMBER_OF_TILE_GROUPS = 3;
+import Pagination from '../pagination';
 
 export default ({ activeCollection }) => {
-  const { xIndex, windowDimensions } = useContext(NavigationContext);
+  const { xIndex, windowDimensions, setXLimit, setXIndex } = useContext(
+    NavigationContext
+  );
+  const [totalPictures, setTotalPictures] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [entries, setEntries] = useState([]);
+  const [tileGroupCount, setTileGroupCount] = useState(3);
+  const [maxPages, setMaxPages] = useState();
+
+  //  When edge of tile group ended
+  const fetchMoreEntries = async (page) => {
+    const res = await api.photos.get.byCollection(activeCollection.id, {
+      page,
+      per_page: 18,
+    });
+    setEntries((prev) => {
+      return [...prev, ...res.data];
+    });
+  };
+
+  //  First paint
+
+  useEffect(() => {
+    (async () => {
+      if (activeCollection.id) {
+        const res = await api.photos.get.byCollection(activeCollection.id, {
+          page: 1,
+          per_page: 18,
+        });
+        const totalEntries = res.headers['x-total'];
+        setTotalPictures(totalEntries);
+        setEntries(res.data);
+        setCurrentPage(1);
+        setXIndex(xIndex === 0 ? 0 : 1);
+        setMaxPages(mod(totalEntries, 6));
+      }
+    })();
+  }, [activeCollection.id]);
+
+  //  Set xLimit as well as tile group count
+
+  useEffect(() => {
+    const pages = mod(entries.length, 6);
+    setTileGroupCount(pages);
+    setXLimit(pages);
+  }, [entries]);
+
+  //  Check when we react end of tilegroup
+
+  useEffect(() => {
+    if (xIndex >= tileGroupCount - 1) {
+      fetchMoreEntries(currentPage + 1);
+      setCurrentPage((prevPage) => {
+        return prevPage + 1;
+      });
+    }
+  }, [xIndex]);
 
   const contextualCardContentWidth = `${
     windowDimensions.width * (xIndex > 0 ? 0.95 : 0.8)
@@ -28,10 +85,8 @@ export default ({ activeCollection }) => {
   return (
     <div className={Container}>
       <div className={Topbar}>
-        <h1 className={Title}>{activeCollection.title}</h1>
-        <span className={Subtitle}>
-          {activeCollection.totalPhotos} pictures in this album
-        </span>
+        <h1 className={Title}>{activeCollection.name}</h1>
+        <span className={Subtitle}>{totalPictures} pictures in this album</span>
       </div>
       <div
         className={CardContainer}
@@ -45,10 +100,10 @@ export default ({ activeCollection }) => {
             transform: `translate3d(-${
               xIndex * (windowDimensions.width * 0.95)
             }px ,0,0)`,
-            minWidth: `${NUMBER_OF_TILE_GROUPS * contextualCardContentWidth}px`,
+            minWidth: `${tileGroupCount * contextualCardContentWidth}px`,
           }}
         >
-          {chunkArray(activeCollection.entries, 6).map((page, index) => {
+          {chunkArray(entries, 6).map((page, index) => {
             return (
               <div
                 className={CardWrapper}
@@ -65,6 +120,7 @@ export default ({ activeCollection }) => {
           })}
         </div>
       </div>
+      <Pagination pageCount={maxPages + 1} activePage={xIndex} />
     </div>
   );
 };

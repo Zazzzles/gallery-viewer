@@ -12,7 +12,7 @@ export default ({ urls }) => {
   const { xIndex } = useContext(NavigationContext);
   return (
     <div className={cn(Container, { [Maximized]: xIndex > 0 })}>
-      <img src={urls.regular} className={Image} />
+      <img src={urls?.regular} className={Image} />
     </div>
   );
 };

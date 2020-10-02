@@ -11,10 +11,6 @@ import NavigationContext from './context/navigation-context';
 
 import api from './api';
 
-//  Implementing chunking of requests to avoid hitting free tier request limit
-//  TODO: Externalize image fetching hooks
-const COLLECTION_FETCH_CHUNK_SIZE = 3;
-
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
   return {
@@ -29,50 +25,16 @@ function App() {
   );
 
   const [collections, setCollections] = useState([]);
-  const [fetchedCollections, setFetchedCollections] = useState({});
-  const [collectionOffset, setCollectionOffset] = useState(
-    COLLECTION_FETCH_CHUNK_SIZE
-  );
   const [activeCollection, setActiveCollection] = useState({
-    title: '',
-    totalPhotos: 0,
-    entries: [],
+    id: '',
+    name: '',
+    pictureCount: 0,
   });
 
-  const { xIndex, yIndex } = useNavigationState(2, collections.length - 1);
-
-  const fetchMoreCollectons = (collections) => {
-    //  Get next chunk of collections to fetch
-
-    let collectionsToFetch = collections.filter((_, index) => {
-      return (
-        index < collectionOffset + COLLECTION_FETCH_CHUNK_SIZE &&
-        index >= COLLECTION_FETCH_CHUNK_SIZE - collectionOffset
-      );
-    });
-
-    //  Create requests for each collection
-
-    let nextChunk = collectionsToFetch.map(({ id }) => {
-      return api.photos.get.byCollection(id).then((res) => ({
-        id,
-        data: res.data,
-      }));
-    });
-
-    //  Fire requests and persist
-
-    Promise.all(nextChunk).then((results) => {
-      results.forEach((res) => {
-        setFetchedCollections((prevCollections) => {
-          return { ...prevCollections, [res.id]: res.data };
-        });
-      });
-      setCollectionOffset((prevOffset) => {
-        return prevOffset + COLLECTION_FETCH_CHUNK_SIZE;
-      });
-    });
-  };
+  const { xIndex, yIndex, setXLimit, setXIndex } = useNavigationState(
+    2,
+    collections.length - 1
+  );
 
   //  On mount fetch all collections
 
@@ -80,25 +42,10 @@ function App() {
     setWindowDimensions(getWindowDimensions());
     (async () => {
       const res = await api.collections.get.all();
+      console.log(res.data);
       setCollections(res.data);
-      res.data.forEach(async ({ id }, index) => {
-        if (index < COLLECTION_FETCH_CHUNK_SIZE) {
-          let res = await api.photos.get.byCollection(id);
-          setFetchedCollections((prevCollections) => {
-            return { ...prevCollections, [id]: res.data };
-          });
-        }
-      });
     })();
   }, []);
-
-  //  Eveytime yIndex or collections change, try to fetch more collections
-
-  useEffect(() => {
-    if (yIndex === collectionOffset - 1) {
-      fetchMoreCollectons(collections);
-    }
-  }, [collections, yIndex]);
 
   //  Get active menu item
 
@@ -106,16 +53,18 @@ function App() {
     const activeCollection = collections[yIndex];
     if (activeCollection) {
       setActiveCollection({
-        title: activeCollection.title,
-        totalPhotos: activeCollection.total_photos,
-        entries: fetchedCollections[activeCollection.id],
+        id: activeCollection.id,
+        name: activeCollection.title,
+        pictureCount: activeCollection.total_photos,
       });
     }
-  }, [fetchedCollections, collections, yIndex]);
+  }, [collections, yIndex]);
 
   return (
     <div className={Container}>
-      <NavigationContext.Provider value={{ xIndex, yIndex, windowDimensions }}>
+      <NavigationContext.Provider
+        value={{ xIndex, yIndex, windowDimensions, setXLimit, setXIndex }}
+      >
         <Sidebar collections={collections} />
         <Content activeCollection={activeCollection} />
       </NavigationContext.Provider>

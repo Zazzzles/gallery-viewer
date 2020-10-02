@@ -1,5 +1,4 @@
 .Container {
-  background-color: lightblue;
   height: 35vh;
   width: 24vw;
   border-radius: var(--radii-4);
@@ -17,5 +16,5 @@
 }
 
 .Image {
-  width: 27vw;
+  width: 150%;
 }
