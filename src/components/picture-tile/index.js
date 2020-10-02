@@ -6,6 +6,8 @@ import { Container, Maximized } from './index.module.css';
 
 import NavigationContext from '../../context/navigation-context';
 
+// https://css-tricks.com/pre-caching-image-with-react-suspense/
+
 export default () => {
   const { xIndex } = useContext(NavigationContext);
 
