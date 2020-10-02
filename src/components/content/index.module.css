@@ -36,3 +36,9 @@
   flex-direction: row;
   transition: all 0.3s;
 }
+
+.CardWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  transition: all 0.3s;
+}

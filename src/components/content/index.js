@@ -6,25 +6,30 @@ import {
   Title,
   CardContainer,
   CardContainerInner,
+  CardWrapper,
   Subtitle,
 } from './index.module.css';
 
 import PictureTile from '../picture-tile';
-import PictureTileContainer from '../picture-tile-container';
 
 import NavigationContext from '../../context/navigation-context';
 
 const NUMBER_OF_TILE_GROUPS = 3;
 
 export default () => {
-  const { xIndex, yIndex, windowDimensions } = useContext(NavigationContext);
+  const { xIndex, windowDimensions } = useContext(NavigationContext);
   return (
     <div className={Container}>
       <div className={Topbar}>
         <h1 className={Title}>Some title</h1>
         <span className={Subtitle}>34 pictures in this album</span>
       </div>
-      <div className={CardContainer}>
+      <div
+        className={CardContainer}
+        style={{
+          width: `${windowDimensions.width * (xIndex > 0 ? 0.95 : 0.8)}px`,
+        }}
+      >
         <div
           className={CardContainerInner}
           style={{
@@ -37,30 +42,45 @@ export default () => {
             }px`,
           }}
         >
-          <PictureTileContainer>
+          <div
+            className={CardWrapper}
+            style={{
+              width: `${windowDimensions.width * (xIndex > 0 ? 0.95 : 0.8)}px`,
+            }}
+          >
             <PictureTile />
             <PictureTile />
             <PictureTile />
             <PictureTile />
             <PictureTile />
             <PictureTile />
-          </PictureTileContainer>
-          <PictureTileContainer>
+          </div>
+          <div
+            className={CardWrapper}
+            style={{
+              width: `${windowDimensions.width * (xIndex > 0 ? 0.95 : 0.8)}px`,
+            }}
+          >
             <PictureTile />
             <PictureTile />
             <PictureTile />
             <PictureTile />
             <PictureTile />
             <PictureTile />
-          </PictureTileContainer>
-          <PictureTileContainer>
+          </div>
+          <div
+            className={CardWrapper}
+            style={{
+              width: `${windowDimensions.width * (xIndex > 0 ? 0.95 : 0.8)}px`,
+            }}
+          >
             <PictureTile />
             <PictureTile />
             <PictureTile />
             <PictureTile />
             <PictureTile />
             <PictureTile />
-          </PictureTileContainer>
+          </div>
         </div>
       </div>
     </div>
