@@ -18,6 +18,11 @@ const NUMBER_OF_TILE_GROUPS = 3;
 
 export default () => {
   const { xIndex, windowDimensions } = useContext(NavigationContext);
+
+  const contextualCardContentWidth = `${
+    windowDimensions.width * (xIndex > 0 ? 0.95 : 0.8)
+  }px`;
+
   return (
     <div className={Container}>
       <div className={Topbar}>
@@ -27,7 +32,7 @@ export default () => {
       <div
         className={CardContainer}
         style={{
-          width: `${windowDimensions.width * (xIndex > 0 ? 0.95 : 0.8)}px`,
+          width: contextualCardContentWidth,
         }}
       >
         <div
@@ -36,16 +41,13 @@ export default () => {
             transform: `translate3d(-${
               xIndex * (windowDimensions.width * 0.95)
             }px ,0,0)`,
-            minWidth: `${
-              NUMBER_OF_TILE_GROUPS *
-              (windowDimensions.width * (xIndex > 0 ? 0.95 : 0.8))
-            }px`,
+            minWidth: `${NUMBER_OF_TILE_GROUPS * contextualCardContentWidth}px`,
           }}
         >
           <div
             className={CardWrapper}
             style={{
-              width: `${windowDimensions.width * (xIndex > 0 ? 0.95 : 0.8)}px`,
+              width: contextualCardContentWidth,
             }}
           >
             <PictureTile />
@@ -58,7 +60,7 @@ export default () => {
           <div
             className={CardWrapper}
             style={{
-              width: `${windowDimensions.width * (xIndex > 0 ? 0.95 : 0.8)}px`,
+              width: contextualCardContentWidth,
             }}
           >
             <PictureTile />
@@ -71,7 +73,7 @@ export default () => {
           <div
             className={CardWrapper}
             style={{
-              width: `${windowDimensions.width * (xIndex > 0 ? 0.95 : 0.8)}px`,
+              width: contextualCardContentWidth,
             }}
           >
             <PictureTile />
