@@ -4,7 +4,9 @@ import cn from 'classnames';
 
 import {
   Container,
+  TitleContainer,
   Title,
+  Subtitle,
   ThumbContainer,
   ThumbImageContainer,
   ThumbImage,
@@ -15,7 +17,7 @@ import {
 const ThumbNail = ({ src }) => {
   return (
     <div className={ThumbImageContainer}>
-      <img src={src} className={ThumbImage} alt='Thumb image' />
+      <img src={src} className={ThumbImage} alt='Thumb' />
     </div>
   );
 };
@@ -23,10 +25,15 @@ const ThumbNail = ({ src }) => {
 export default ({ active, ...collectionProps }) => {
   return (
     <div className={cn(Container, { [Active]: active })}>
-      <span className={Title}>{collectionProps.title}</span>
+      <div className={TitleContainer}>
+        <span className={Title}>{collectionProps.title}</span>
+        <span className={Subtitle}>
+          {collectionProps.user.first_name} {collectionProps.user.last_name}
+        </span>
+      </div>
       <div className={ThumbContainer}>
         {collectionProps.preview_photos.map((photo) => {
-          return <ThumbNail src={photo.urls.thumb} />;
+          return <ThumbNail src={photo.urls.thumb} key={photo.urls.thumb} />;
         })}
         <span className={ThumbText}>
           +{' '}

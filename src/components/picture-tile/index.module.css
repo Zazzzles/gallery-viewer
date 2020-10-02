@@ -6,8 +6,16 @@
   box-shadow: var(--shadow-lg);
   margin: var(--spacing-3);
   transition: all 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .Maximized {
   width: 26vw;
+}
+
+.Image {
+  width: 27vw;
 }

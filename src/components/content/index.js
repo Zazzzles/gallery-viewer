@@ -10,13 +10,15 @@ import {
   Subtitle,
 } from './index.module.css';
 
+import chunkArray from '../../helpers/chunk-array';
+
 import PictureTile from '../picture-tile';
 
 import NavigationContext from '../../context/navigation-context';
 
 const NUMBER_OF_TILE_GROUPS = 3;
 
-export default () => {
+export default ({ activeCollection }) => {
   const { xIndex, windowDimensions } = useContext(NavigationContext);
 
   const contextualCardContentWidth = `${
@@ -26,8 +28,10 @@ export default () => {
   return (
     <div className={Container}>
       <div className={Topbar}>
-        <h1 className={Title}>Some title</h1>
-        <span className={Subtitle}>34 pictures in this album</span>
+        <h1 className={Title}>{activeCollection.title}</h1>
+        <span className={Subtitle}>
+          {activeCollection.totalPhotos} pictures in this album
+        </span>
       </div>
       <div
         className={CardContainer}
@@ -44,7 +48,24 @@ export default () => {
             minWidth: `${NUMBER_OF_TILE_GROUPS * contextualCardContentWidth}px`,
           }}
         >
-          <div
+          {chunkArray(activeCollection.entries, 6).map((page, index) => {
+            return (
+              <div
+                className={CardWrapper}
+                style={{
+                  width: contextualCardContentWidth,
+                }}
+                key={index}
+              >
+                {page.map((pic, picIndex) => {
+                  return <PictureTile {...pic} key={picIndex} />;
+                })}
+              </div>
+            );
+          })}
+
+          {/* 
+           <div
             className={CardWrapper}
             style={{
               width: contextualCardContentWidth,
@@ -83,6 +104,7 @@ export default () => {
             <PictureTile />
             <PictureTile />
           </div>
+          */}
         </div>
       </div>
     </div>

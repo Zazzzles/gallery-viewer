@@ -14,7 +14,6 @@ export default (xLimit = 10, yLimit = 10) => {
   const handleEvent = useCallback(
     (event) => {
       if (event.key === KEY_CODES.down) {
-        console.log('Up');
         setYIndex((yIndex) => {
           if (yIndex < yLimit) {
             return yIndex + 1;
@@ -23,7 +22,6 @@ export default (xLimit = 10, yLimit = 10) => {
         });
       }
       if (event.key === KEY_CODES.up) {
-        console.log('down');
         setYIndex((yIndex) => {
           if (yIndex > 0) {
             return yIndex - 1;
@@ -32,7 +30,6 @@ export default (xLimit = 10, yLimit = 10) => {
         });
       }
       if (event.key === KEY_CODES.left) {
-        console.log('left');
         setXIndex((xIndex) => {
           if (xIndex > 0) {
             return xIndex - 1;
@@ -41,7 +38,6 @@ export default (xLimit = 10, yLimit = 10) => {
         });
       }
       if (event.key === KEY_CODES.right) {
-        console.log('right');
         setXIndex((xIndex) => {
           if (xIndex < xLimit) {
             return xIndex + 1;

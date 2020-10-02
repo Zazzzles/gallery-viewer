@@ -18,11 +18,23 @@
   background-color: var(--bg3-dark);
 }
 
+.TitleContainer {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-2) 0;
+}
+
 .Title {
-  font-size: var(--font-scale-4);
+  font-size: var(--font-scale-2);
   color: white;
   font-weight: 300;
-  padding: var(--spacing-2) 0;
+}
+
+.Subtitle {
+  color: white;
+  font-size: var(--font-scale-0);
+  opacity: 0.3;
+  margin-top: var(--spacing-1);
 }
 
 .ThumbContainer {
@@ -33,8 +45,8 @@
 }
 
 .ThumbImageContainer {
-  height: var(--spacing-9);
-  width: var(--spacing-9);
+  height: var(--spacing-8);
+  width: var(--spacing-8);
   overflow: hidden;
   border-radius: var(--radii-1);
   margin-right: var(--spacing-2);
