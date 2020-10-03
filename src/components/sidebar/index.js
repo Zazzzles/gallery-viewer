@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import cn from 'classnames';
 
@@ -9,6 +9,7 @@ import {
   LogoWrapper,
   MenuItemWrapper,
   MenuItemWrapperInner,
+  HideScrollbar,
 } from './index.module.css';
 
 import LogoImage from '../../static/images/main-logo.png';
@@ -16,10 +17,10 @@ import LogoImageSmall from '../../static/images/logo-small.png';
 import MenuItem from '../menu-item';
 import MicroMenuItem from '../micro-menu-item';
 import NavigationContext from '../../context/navigation-context';
+import isMac from '../../helpers/is-mac';
 
 export default ({ collections }) => {
   const { xIndex, yIndex } = useContext(NavigationContext);
-
   return (
     <div className={cn(Container, { [Minimized]: xIndex > 0 })}>
       <div className={LogoWrapper}>
@@ -29,7 +30,7 @@ export default ({ collections }) => {
           alt={'Main logo'}
         />
       </div>
-      <div className={MenuItemWrapper}>
+      <div className={cn(MenuItemWrapper, { [HideScrollbar]: !isMac() })}>
         <div
           className={MenuItemWrapperInner}
           style={

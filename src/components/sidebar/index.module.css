@@ -31,7 +31,10 @@
   height: 100%;
   box-sizing: border-box;
   padding: 0 var(--spacing-5);
-  overflow-y: scroll;
+  overflow: hidden;
+}
+
+.HideScrollbar {
   margin-right: -17px;
 }
 

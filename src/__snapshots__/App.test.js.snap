@@ -5,76 +5,37 @@ exports[`renders correctly 1`] = `
   className="Container"
 >
   <div
-    className="Container"
+    className="LoaderContainer"
   >
     <div
-      className="LogoWrapper"
-    >
-      <img
-        alt="Main logo"
-        className="Logo"
-        src="main-logo.png"
-      />
-    </div>
-    <div
-      className="MenuItemWrapper"
+      class="sk-cube-grid"
     >
       <div
-        className="MenuItemWrapperInner"
-        style={
-          Object {
-            "transform": "translate3d(0, -0px, 0)",
-          }
-        }
+        class="sk-cube sk-cube1"
       />
-    </div>
-  </div>
-  <div
-    className="Container"
-  >
-    <div
-      className="Topbar"
-    >
-      <h1
-        className="Title"
-      >
-        
-      </h1>
-      <span
-        className="Subtitle"
-      >
-        0
-         pictures in this album
-      </span>
-    </div>
-    <div
-      className="CardContainer"
-      style={
-        Object {
-          "width": "819.2px",
-        }
-      }
-    >
       <div
-        className="CardContainerInner"
-        style={
-          Object {
-            "minWidth": "NaNpx",
-            "transform": "translate3d(-0px ,0,0)",
-          }
-        }
+        class="sk-cube sk-cube2"
       />
-    </div>
-    <div
-      className="Container"
-    >
       <div
-        className="Wrapper"
-        style={
-          Object {
-            "width": "NaNpx",
-          }
-        }
+        class="sk-cube sk-cube3"
+      />
+      <div
+        class="sk-cube sk-cube4"
+      />
+      <div
+        class="sk-cube sk-cube5"
+      />
+      <div
+        class="sk-cube sk-cube6"
+      />
+      <div
+        class="sk-cube sk-cube7"
+      />
+      <div
+        class="sk-cube sk-cube8"
+      />
+      <div
+        class="sk-cube sk-cube9"
       />
     </div>
   </div>

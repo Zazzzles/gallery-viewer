@@ -14,7 +14,7 @@ exports[`renders correctly 1`] = `
     />
   </div>
   <div
-    className="MenuItemWrapper"
+    className="MenuItemWrapper HideScrollbar"
   >
     <div
       className="MenuItemWrapperInner"

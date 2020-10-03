@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Container } from './index.module.css';
+import { Container, LoaderContainer } from './index.module.css';
 
 import Sidebar from './components/sidebar';
 import Content from './components/content';
@@ -10,6 +10,8 @@ import useNavigationState from './helpers/use-navigation-state';
 import NavigationContext from './context/navigation-context';
 
 import WelcomeCover from './components/welcome-cover';
+
+import Loader from './components/loader';
 
 import toast from 'just-toasty';
 
@@ -27,6 +29,7 @@ function App() {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
+  const [loading, setLoading] = useState(true);
   const [collections, setCollections] = useState([]);
   const [isNewUser, setIsNewUser] = useState();
   const [activeCollection, setActiveCollection] = useState({
@@ -56,6 +59,7 @@ function App() {
             total_photos: totalEntries,
           });
         }
+        setLoading(false);
         setCollections(withCounts);
       } catch (err) {
         console.log(err);
@@ -87,12 +91,18 @@ function App() {
   return (
     <div className={Container}>
       {isNewUser && <WelcomeCover onDismiss={onWelcomeDismiss} />}
-      <NavigationContext.Provider
-        value={{ xIndex, yIndex, windowDimensions, setXLimit, setXIndex }}
-      >
-        <Sidebar collections={collections} />
-        <Content activeCollection={activeCollection} />
-      </NavigationContext.Provider>
+      {loading ? (
+        <div className={LoaderContainer}>
+          <Loader />
+        </div>
+      ) : (
+        <NavigationContext.Provider
+          value={{ xIndex, yIndex, windowDimensions, setXLimit, setXIndex }}
+        >
+          <Sidebar collections={collections} />
+          <Content activeCollection={activeCollection} />
+        </NavigationContext.Provider>
+      )}
     </div>
   );
 }
