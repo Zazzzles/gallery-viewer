@@ -9,6 +9,8 @@ import useNavigationState from './helpers/use-navigation-state';
 
 import NavigationContext from './context/navigation-context';
 
+import WelcomeCover from './components/welcome-cover';
+
 import api from './api';
 
 function getWindowDimensions() {
@@ -25,6 +27,7 @@ function App() {
   );
 
   const [collections, setCollections] = useState([]);
+  const [isNewUser, setIsNewUser] = useState();
   const [activeCollection, setActiveCollection] = useState({
     id: '',
     name: '',
@@ -40,11 +43,16 @@ function App() {
 
   useEffect(() => {
     setWindowDimensions(getWindowDimensions());
+
     (async () => {
       const res = await api.collections.get.all();
       console.log(res.data);
       setCollections(res.data);
     })();
+
+    const visited = localStorage.getItem('visited');
+    console.log(!visited);
+    setIsNewUser(!visited);
   }, []);
 
   //  Get active menu item
@@ -60,8 +68,14 @@ function App() {
     }
   }, [collections, yIndex]);
 
+  const onWelcomeDismiss = () => {
+    localStorage.setItem('visited', true);
+    setIsNewUser(false);
+  };
+
   return (
     <div className={Container}>
+      {isNewUser && <WelcomeCover onDismiss={onWelcomeDismiss} />}
       <NavigationContext.Provider
         value={{ xIndex, yIndex, windowDimensions, setXLimit, setXIndex }}
       >

@@ -1,0 +1,67 @@
+.Container {
+  height: 100vh;
+  width: 100vw;
+  background-color: #000000ab;
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Inner {
+  width: 20vw;
+  border-radius: var(--radii-5);
+  background-color: var(--bg2);
+  margin-bottom: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-8) var(--spacing-8);
+  box-sizing: border-box;
+}
+
+.Title {
+  color: white;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.KeysImage {
+  height: 120px;
+  margin-top: var(--spacing-10);
+}
+
+.TextContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: var(--spacing-10);
+}
+
+.TextHeading {
+  color: white;
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
+}
+
+.Text {
+  color: white;
+}
+
+.ContinueContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: var(--spacing-8);
+  opacity: 0.4;
+}
+
+.ContinueText {
+  color: white;
+  margin-right: var(--spacing-2);
+}
+
+.EnterIcon {
+  height: 20px;
+}
