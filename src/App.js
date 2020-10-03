@@ -43,15 +43,11 @@ function App() {
 
   useEffect(() => {
     setWindowDimensions(getWindowDimensions());
-
     (async () => {
       const res = await api.collections.get.all();
-      console.log(res.data);
       setCollections(res.data);
     })();
-
     const visited = localStorage.getItem('visited');
-    console.log(!visited);
     setIsNewUser(!visited);
   }, []);
 

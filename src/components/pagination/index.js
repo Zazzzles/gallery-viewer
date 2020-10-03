@@ -17,6 +17,7 @@ export default ({ pageCount = 10, activePage = 5 }) => {
             if (i < 30) {
               toRend.push(
                 <div
+                  key={i}
                   className={cn(MenuDot, { [MenuDotActive]: i === activePage })}
                 ></div>
               );
