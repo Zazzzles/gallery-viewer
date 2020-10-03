@@ -23,7 +23,6 @@ const ThumbNail = ({ src }) => {
 };
 
 export default ({ active, ...collectionProps }) => {
-  console.log(collectionProps);
   return (
     <div className={cn(Container, { [Active]: active })}>
       <div className={TitleContainer}>

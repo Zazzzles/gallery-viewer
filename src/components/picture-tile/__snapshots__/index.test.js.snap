@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="Container"
+>
+  <img
+    alt="Content"
+    className="Image"
+    loading="eager"
+    onLoad={[Function]}
+    src="https://hips.hearstapps.com/countryliving.cdnds.net/17/47/1511194376-cavachon-puppy-christmas.jpg"
+  />
+</div>
+`;

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="Container Active"
+>
+  <div
+    className="TitleContainer"
+  >
+    <span
+      className="Title"
+    >
+      
+    </span>
+    <span
+      className="Subtitle"
+    >
+      
+       
+      
+    </span>
+  </div>
+  <div
+    className="ThumbContainer"
+  >
+    <div
+      className="ThumbImageContainer"
+    >
+      <img
+        alt="Thumb"
+        className="ThumbImage"
+        src=""
+      />
+    </div>
+    <span
+      className="ThumbText"
+    >
+      + -1 more
+    </span>
+  </div>
+</div>
+`;

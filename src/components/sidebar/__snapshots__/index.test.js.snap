@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="Container"
+>
+  <div
+    className="LogoWrapper"
+  >
+    <img
+      alt="Main logo"
+      className="Logo"
+      src="main-logo.png"
+    />
+  </div>
+  <div
+    className="MenuItemWrapper"
+  >
+    <div
+      className="MenuItemWrapperInner"
+      style={
+        Object {
+          "transform": "translate3d(0, -0px, 0)",
+        }
+      }
+    />
+  </div>
+</div>
+`;

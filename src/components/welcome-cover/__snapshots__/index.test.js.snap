@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="Container"
+>
+  <div
+    className="Inner"
+  >
+    <span
+      className="Title"
+    >
+      Welcome!
+    </span>
+    <img
+      className="KeysImage"
+      src="keys.png"
+    />
+    <div
+      className="TextContainer"
+    >
+      <span
+        className="TextHeading"
+      >
+        Pro tip!
+      </span>
+      <span
+        className="Text"
+      >
+        Use your directional arrows to naviate the interface
+      </span>
+    </div>
+    <div
+      className="ContinueContainer"
+    >
+      <span
+        className="ContinueText"
+      >
+        Enter to continue
+      </span>
+      <img
+        className="EnterIcon"
+        src="enter.png"
+      />
+    </div>
+  </div>
+</div>
+`;
