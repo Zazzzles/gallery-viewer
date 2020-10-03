@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="Container"
+>
+  <div
+    className="Container"
+  >
+    <div
+      className="LogoWrapper"
+    >
+      <img
+        alt="Main logo"
+        className="Logo"
+        src="main-logo.png"
+      />
+    </div>
+    <div
+      className="MenuItemWrapper"
+    >
+      <div
+        className="MenuItemWrapperInner"
+        style={
+          Object {
+            "transform": "translate3d(0, -0px, 0)",
+          }
+        }
+      />
+    </div>
+  </div>
+  <div
+    className="Container"
+  >
+    <div
+      className="Topbar"
+    >
+      <h1
+        className="Title"
+      >
+        
+      </h1>
+      <span
+        className="Subtitle"
+      >
+        0
+         pictures in this album
+      </span>
+    </div>
+    <div
+      className="CardContainer"
+      style={
+        Object {
+          "width": "819.2px",
+        }
+      }
+    >
+      <div
+        className="CardContainerInner"
+        style={
+          Object {
+            "minWidth": "NaNpx",
+            "transform": "translate3d(-0px ,0,0)",
+          }
+        }
+      />
+    </div>
+    <div
+      className="Container"
+    >
+      <div
+        className="Wrapper"
+        style={
+          Object {
+            "width": "NaNpx",
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;

@@ -11,6 +11,8 @@ import NavigationContext from './context/navigation-context';
 
 import WelcomeCover from './components/welcome-cover';
 
+import toast from 'just-toasty';
+
 import api from './api';
 
 function getWindowDimensions() {
@@ -43,17 +45,22 @@ function App() {
   useEffect(() => {
     setWindowDimensions(getWindowDimensions());
     (async () => {
-      const res = await api.collections.get.all();
-      let withCounts = [];
-      for (const collection of res.data) {
-        let photos = await api.photos.get.byCollection(collection.id);
-        const totalEntries = photos.headers['x-total'];
-        withCounts.push({
-          ...collection,
-          total_photos: totalEntries,
-        });
+      try {
+        const res = await api.collections.get.all();
+        let withCounts = [];
+        for (const collection of res.data) {
+          let photos = await api.photos.get.byCollection(collection.id);
+          const totalEntries = photos.headers['x-total'];
+          withCounts.push({
+            ...collection,
+            total_photos: totalEntries,
+          });
+        }
+        setCollections(withCounts);
+      } catch (err) {
+        console.log(err);
+        toast('Could not fetch collections');
       }
-      setCollections(withCounts);
     })();
     const visited = localStorage.getItem('visited');
     setIsNewUser(!visited);

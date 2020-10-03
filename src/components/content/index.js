@@ -14,7 +14,7 @@ import api from '../../api';
 
 import chunkArray from '../../helpers/chunk-array';
 import mod from '../../helpers/modulus';
-
+import toast from 'just-toasty';
 import PictureTile from '../picture-tile';
 import NavigationContext from '../../context/navigation-context';
 import Pagination from '../pagination';
@@ -45,16 +45,21 @@ export default ({ activeCollection }) => {
   useEffect(() => {
     (async () => {
       if (activeCollection.id) {
-        const res = await api.photos.get.byCollection(activeCollection.id, {
-          page: 1,
-          per_page: 18,
-        });
-        const totalEntries = res.headers['x-total'];
-        setTotalPictures(totalEntries);
-        setEntries(res.data);
-        setCurrentPage(1);
-        setXIndex(xIndex === 0 ? 0 : 1);
-        setMaxPages(mod(totalEntries, 6));
+        try {
+          const res = await api.photos.get.byCollection(activeCollection.id, {
+            page: 1,
+            per_page: 18,
+          });
+          const totalEntries = res.headers['x-total'];
+          setTotalPictures(totalEntries);
+          setEntries(res.data);
+          setCurrentPage(1);
+          setXIndex(xIndex === 0 ? 0 : 1);
+          setMaxPages(mod(totalEntries, 6));
+        } catch (err) {
+          console.log(err);
+          toast('Could not fetch collection photos');
+        }
       }
     })();
   }, [activeCollection.id]);

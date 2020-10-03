@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.7",
     "axios": "^0.20.0",
     "classnames": "^2.2.6",
+    "just-toasty": "^1.4.0",
     "qs": "^6.9.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
