@@ -10,8 +10,8 @@ import {
   ThumbContainer,
   ThumbImageContainer,
   ThumbImage,
-  ThumbText,
   Active,
+  ThumbText,
 } from './index.module.css';
 
 const ThumbNail = ({ src }) => {
@@ -23,6 +23,7 @@ const ThumbNail = ({ src }) => {
 };
 
 export default ({ active, ...collectionProps }) => {
+  console.log(collectionProps);
   return (
     <div className={cn(Container, { [Active]: active })}>
       <div className={TitleContainer}>
@@ -36,9 +37,9 @@ export default ({ active, ...collectionProps }) => {
           return <ThumbNail src={photo.urls.thumb} key={photo.urls.thumb} />;
         })}
         <span className={ThumbText}>
-          +{' '}
-          {collectionProps.total_photos - collectionProps.preview_photos.length}{' '}
-          more
+          {`+ ${
+            collectionProps.total_photos - collectionProps.preview_photos.length
+          } more`}
         </span>
       </div>
     </div>

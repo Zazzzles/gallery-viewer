@@ -25,7 +25,6 @@ function App() {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
-
   const [collections, setCollections] = useState([]);
   const [isNewUser, setIsNewUser] = useState();
   const [activeCollection, setActiveCollection] = useState({
@@ -45,7 +44,16 @@ function App() {
     setWindowDimensions(getWindowDimensions());
     (async () => {
       const res = await api.collections.get.all();
-      setCollections(res.data);
+      let withCounts = [];
+      for (const collection of res.data) {
+        let photos = await api.photos.get.byCollection(collection.id);
+        const totalEntries = photos.headers['x-total'];
+        withCounts.push({
+          ...collection,
+          total_photos: totalEntries,
+        });
+      }
+      setCollections(withCounts);
     })();
     const visited = localStorage.getItem('visited');
     setIsNewUser(!visited);

@@ -13,6 +13,11 @@
   transition: all 0.3s;
 }
 
+.ContentWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .Active {
   border: 2px solid var(--primary);
   background-color: var(--bg3-dark);
@@ -33,7 +38,7 @@
 .Subtitle {
   color: white;
   font-size: var(--font-scale-0);
-  opacity: 0.3;
+  opacity: 0.5;
   margin-top: var(--spacing-1);
 }
 
