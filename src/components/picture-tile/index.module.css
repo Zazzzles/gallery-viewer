@@ -20,6 +20,6 @@
   width: 150%;
 }
 
-.Fade {
-  opacity: 0;
+.LoaderContainer {
+  position: absolute;
 }

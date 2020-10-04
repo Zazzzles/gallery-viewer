@@ -2,36 +2,41 @@ import React, { useState, useEffect, useContext } from 'react';
 
 import cn from 'classnames';
 
-import { Container, Maximized, Image, Fade } from './index.module.css';
+import {
+  Container,
+  Maximized,
+  Image,
+  LoaderContainer,
+} from './index.module.css';
 
 import NavigationContext from '../../context/navigation-context';
+import Loader from '../image-loader';
 
 export default ({ urls }) => {
   const { xIndex } = useContext(NavigationContext);
   const [activeImage, setActiveImage] = useState(urls?.regular);
-  const [transitioning, setTrasitioning] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    setTrasitioning(true);
-    const timeout = setTimeout(() => {
-      setActiveImage(urls?.regular);
-    }, 400);
-    return () => {
-      clearTimeout(timeout);
-    };
+    setLoaded(false);
+    setActiveImage(urls?.regular);
   }, [urls]);
 
   const onImageLoad = () => {
-    setTrasitioning(false);
+    setLoaded(true);
   };
 
   return (
     <div
       className={cn(Container, {
         [Maximized]: xIndex > 0,
-        [Fade]: transitioning,
       })}
     >
+      {!loaded && (
+        <div className={LoaderContainer}>
+          <Loader />
+        </div>
+      )}
       <img
         src={activeImage}
         onLoad={onImageLoad}
