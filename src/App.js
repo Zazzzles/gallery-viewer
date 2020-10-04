@@ -39,7 +39,6 @@ function App() {
   });
 
   const { xIndex, yIndex, setXLimit, setXIndex } = useNavigationState(
-    2,
     collections.length - 1
   );
 
@@ -50,17 +49,8 @@ function App() {
     (async () => {
       try {
         const res = await api.collections.get.all();
-        let withCounts = [];
-        for (const collection of res.data) {
-          let photos = await api.photos.get.byCollection(collection.id);
-          const totalEntries = photos.headers['x-total'];
-          withCounts.push({
-            ...collection,
-            total_photos: totalEntries,
-          });
-        }
         setLoading(false);
-        setCollections(withCounts);
+        setCollections(res.data);
       } catch (err) {
         console.log(err);
         toast('Could not fetch collections');

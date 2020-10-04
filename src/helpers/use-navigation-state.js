@@ -7,10 +7,10 @@ const KEY_CODES = {
   right: 'ArrowRight',
 };
 
-export default (xLimitDefault = 10, yLimit = 10) => {
+export default (yLimit = 10) => {
   const [xIndex, setXIndex] = useState(0);
   const [yIndex, setYIndex] = useState(0);
-  const [xLimit, setXLimit] = useState(xLimitDefault);
+  const [xLimit, setXLimit] = useState(2);
 
   const handleEvent = useCallback(
     (event) => {
