@@ -23,3 +23,8 @@
 .LoaderContainer {
   position: absolute;
 }
+
+.Transition {
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+}
